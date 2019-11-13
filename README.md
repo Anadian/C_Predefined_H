@@ -12,8 +12,8 @@
 	- [Compilers](#Compilers)
 	- [Systems](#Systems)
 	- [Standards](#Standards)
-		- [Unix Standards](#Unix Standards)
-		- [Helpful Macros](#Helpful Macros)
+		- [Unix Standards](#unix-standards)
+		- [Helpful Macros](#helpful-macros)
 	- [Options](#Options)
 - [Contributing](#Contributing)
 - [License](#License)
@@ -208,8 +208,8 @@ The sheer breadth of macros `c_predefined.h` can check for and wrap as needed ca
 | `C_PREDEFINED_OBSCURE_ARCHITECTURES` | Adds tons of macros for vintage and obscure [architectures](#Architectures) to be checked against, and wrapped if found. |
 | `C_PREDEFINED_OBSCURE_COMPILERS` | Adds tons of macros for vintage and obscure [compilers](#Compilers) to be checked against, and wrapped if found. |
 | `C_PREDEFINED_OBSCURE_SYSTEMS` | Adds tons of macros for vintage and obscure [systems](#Systems) to be checked against, and wrapped if found. |
-| `C_PREDEFINED_UNIX_STANDARDS` | Wraps [macros](#Unix Standards) from `<unistd.h>` with the same `C_STANDARD_<language-standard code>` convention as other standards. |
-| `C_PREDEFINED_HELPFUL_MACROS` | Adds additional, [helpful](#Helpful Macros) but less common macros to `C_STANDARD_<macro name>`
+| `C_PREDEFINED_UNIX_STANDARDS` | Wraps [macros](#unix-standards) from `<unistd.h>` with the same `C_STANDARD_<language-standard code>` convention as other standards. |
+| `C_PREDEFINED_HELPFUL_MACROS` | Adds additional, [helpful](#helpful-macros) but less common macros to `C_STANDARD_<macro name>`
 
 Example:
 ```c
