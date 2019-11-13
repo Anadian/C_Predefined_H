@@ -12,8 +12,8 @@
 	- [Compilers](#Compilers)
 	- [Systems](#Systems)
 	- [Standards](#Standards)
-		- [Unix Standards](#Unix_Standards)
-		- [Helpful Macros](#Helpful_Macros)
+		- [Unix Standards](#Unix Standards)
+		- [Helpful Macros](#Helpful Macros)
 	- [Options](#Options)
 - [Contributing](#Contributing)
 - [License](#License)
@@ -23,7 +23,7 @@ Predefined macros and constants are essential to writing portable C/C++ code; un
 The main "c_predefined.h" header file is designed to be a single-file, drop-in, pseudo-library (sort of in the spirit of [Sean T Barret's](https://github.com/nothings/stb) [single-file libs](https://github.com/nothings/single_file_libs) except even simpler); literally just place the "c_predefined.h" file in your source/include directory and you're good to go: no additional attributions, mandatory configuration, or external dependencies to worry about. 
 # API
 [`c_predefined.h`](./c_predefined.h) wraps hundreds of c-preproccessor constants (`#define`s) for tons of architectures, compilers, and systems to be more consistent and clear.
-## Architecture
+## Architectures
 To find out if a specific architecture is in use 
 ```c
 #if C_ARCHITECTURE_<architecture name in all caps> == 1
@@ -49,6 +49,7 @@ int main(int argc, char *argv[]){
 }
 ```
 The [non-obscure](#Options) architectures `c_predefined.h` will recognise by default are: 
+
 | The capitalised macro-name part (for `C_ARCHITECTURE_<macro-name part>`) | The human-readable string (given by `C_ARCHITECTURE`) |
 | --- | --- |
 | `X86_64` | `"x86_64"` |
@@ -58,6 +59,7 @@ The [non-obscure](#Options) architectures `c_predefined.h` will recognise by def
 | `MIPS` | `"MIPS"` |
 | `POWERPC` | `"PowerPC"` |
 | `SPARC` | `"SPARC"` |
+
 Tons more are recognised by defining `C_PREDEFINED_OBSCURE_ARCHITECTURES 1` before including "c_predefined.h" (see [Options](#Options) for more info).
 
 ## Compilers
@@ -87,6 +89,7 @@ int main(int argc, char *argv[]){
 }
 ```
 The [non-obscure](#Options) compilers `c_predefined.h` will recognise by default are: 
+
 | The capitalised macro-name part (for `C_COMPILER_<macro-name part>`) | The human-readable string (given by `C_COMPILER`) |
 | --- | --- |
 | `MINGW` | `"MinGW"` |
@@ -104,6 +107,7 @@ The [non-obscure](#Options) compilers `c_predefined.h` will recognise by default
 | `TINYC` | `"Tiny C"` |
 | `METROWERKS_CODEWARRIOR` | `"Metrowerks CodeWarrior"` |
 | `BORLAND` | `"Borland C++"` |
+
 Tons more are recognised by defining `C_PREDEFINED_OBSCURE_COMPILERS 1` before including "c_predefined.h" (see [Options](#Options) for more info).
 
 ## Systems
@@ -133,6 +137,7 @@ int main(int argc, char *argv[]){
 }
 ```
 The [non-obscure](#Options) systems `c_predefined.h` will recognise by default are: 
+
 | The capitalised macro-name part (for `C_SYSTEM_<macro-name part>`) | The human-readable string (given by `C_SYSTEM`) |
 | --- | --- |
 | `CYGWIN` | `"Cygwin"` |
@@ -157,9 +162,11 @@ The [non-obscure](#Options) systems `c_predefined.h` will recognise by default a
 | `GNU` | `"GNU"` |
 | `LINUX` | `"Linux"` |
 | `UNIX` | `"Unix"` |
+
 Tons more are recognised by defining `C_PREDEFINED_OBSCURE_SYSTEMS 1` before including "c_predefined.h" (see [Options](#Options) for more info).
 ## Standards
 Additionally, `c_predefined.h` recognises several language-standards for both C and C++ compilers:
+
 - `C_STANDARD_C90`
 - `C_STANDARD_C94`
 - `C_STANDARD_C99`
@@ -170,11 +177,13 @@ Additionally, `c_predefined.h` recognises several language-standards for both C 
 - `C_STANDARD_CPP14`
 - `C_STANDARD_CLI`
 - `C_STANDARD_EMBEDDED`
+
 will all evaluate to `1` if the corresponding standard is being implemented. Unlike the architecture/compiler/system constants specified above, standards are cummulative so for example, it's possible for both `C_STANDARD_C94` and `C_STANDARD_C99` to evaluate to `1` at the same time.
 ### Unix Standards
 `c_predefined.h` can also wrap Unix standards specified `<unistd.h>` if `C_PREDEFINED_UNIX_STANDARDS` is defined to equal `1` before including `"c_predefined.h"`; obviously this options should only be used on POSIX-compliant unix-based systems. I may implement an automatic check for if this should be enabled in future updates.
-### Helpful Macrs
+### Helpful Macros
 If `C_PREDEFINED_HELPFUL_MACROS` is defined to `1` before including `"c_predefined.h"`, `c_predefined.h` can also wrap some other, less-ubiquitos, helpful macros under the `C_STANDARD` moniker as follows:
+
 - `C_STANDARD_ELF`
 - `C_STANDARD_CHAR_UNSIGNED`
 - `C_STANDARD_WCHAR_UNSIGNED`
@@ -190,15 +199,18 @@ If `C_PREDEFINED_HELPFUL_MACROS` is defined to `1` before including `"c_predefin
 - `C_STANDARD_DEPRECATED`
 - `C_STANDARD_EXCEPTIONS`
 - `C_STANDARD_64BIT_LONG_INT_AND_POINTER`
+
 ## Options
 The sheer breadth of macros `c_predefined.h` can check for and wrap as needed can be adjust by defining any number of the following macros to a value of `1` before include `"c_predefined.h"`:
+
 | Macro name | Effect |
 | --- | --- |
 | `C_PREDEFINED_OBSCURE_ARCHITECTURES` | Adds tons of macros for vintage and obscure [architectures](#Architectures) to be checked against, and wrapped if found. |
 | `C_PREDEFINED_OBSCURE_COMPILERS` | Adds tons of macros for vintage and obscure [compilers](#Compilers) to be checked against, and wrapped if found. |
 | `C_PREDEFINED_OBSCURE_SYSTEMS` | Adds tons of macros for vintage and obscure [systems](#Systems) to be checked against, and wrapped if found. |
-| `C_PREDEFINED_UNIX_STANDARDS` | Wraps [macros](#Unix_Standards) from `<unistd.h>` with the same `C_STANDARD_<language-standard code>` convention as other standards. |
-| `C_PREDEFINED_HELPFUL_MACROS` | Adds additional, [helpful](#Helpful_Macros) but less common macros to `C_STANDARD_<macro name>`
+| `C_PREDEFINED_UNIX_STANDARDS` | Wraps [macros](#Unix Standards) from `<unistd.h>` with the same `C_STANDARD_<language-standard code>` convention as other standards. |
+| `C_PREDEFINED_HELPFUL_MACROS` | Adds additional, [helpful](#Helpful Macros) but less common macros to `C_STANDARD_<macro name>`
+
 Example:
 ```c
 #define C_PREDEFINED_OBSCURE_ARCHITECTURES 1
@@ -206,10 +218,13 @@ Example:
 #define C_PREDEFINED_OBSCURE_SYSTEMS 1
 #define C_PREDEFINED_UNIX_STANDARDS 1
 #define C_PREDEFINED_HELPFUL_MACROS 1
+#include "c_predefined.h"
 ```
 # Contributing
 Changes are tracked in [CHANGES.md](./CHANGES.md).
+
 Any pull request to add additional predefined macros are welcome, just be sure to provide attribution to the official documentation for the architecture/compiler/system which recognises them. 
 # License
 MIT ©2019 Anadian
+
 SEE LICENSE IN [LICENSE](./LICENSE)
