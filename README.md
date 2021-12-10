@@ -1,7 +1,7 @@
 # C_Predefined_H
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 [![Semantic Versioning 2.0.0](https://img.shields.io/badge/semver-2.0.0-brightgreen?style=flat-square)](https://semver.org/spec/v2.0.0.html)
-[![License](https://img.shields.io/github/license/Anadian/C_Predefined_H)](https://github.com/Anadian/C_Predefined_H/Documents/LICENSE)
+[![License](https://img.shields.io/github/license/Anadian/C_Predefined_H)](https://github.com/Anadian/C_Predefined_H/LICENSE)
 
 > A single C header file which collects and normalizes hundreds on predefined processor macros.
 # Table of Contents
@@ -22,7 +22,7 @@ Predefined macros and constants are essential to writing portable C/C++ code; un
 # Usage
 The main "c_predefined.h" header file is designed to be a single-file, drop-in, pseudo-library (sort of in the spirit of [Sean T Barret's](https://github.com/nothings/stb) [single-file libs](https://github.com/nothings/single_file_libs) except even simpler); literally just place the "c_predefined.h" file in your source/include directory and you're good to go: no additional attributions, mandatory configuration, or external dependencies to worry about. 
 # API
-[`c_predefined.h`](./c_predefined.h) wraps (or shadows) hundreds of c-preproccessor constants (`#define`s) for tons of architectures, compilers, and systems to be more consistent and clear. These shadowed-macros are wrapped in new macros, all following the consstent-naming format of `C_<section>_<item>` with `<section>` either being [`ARCHITECTURE`](#Architectures), [`COMPILER`](#Compilers), [`SYSTEM`](#Systems), or [`STANDARD`](#Standards) and the `<item>` part being a specific architecture/compiler/system/standard: both written with all alphabetical characters in uppercase. Additionally, for the first three, architecure/compiler/system sections, omitting the item part, just using `C_<section>` gives you a human-reable string of the name of the most-applicable (meaning the most specific identifier which can be used to accurately describe that section for the current system/build environment) item for that section (more on this below).
+[`c_predefined.h`](./c_predefined.h) wraps (or shadows) hundreds of C-preprocessor constants (`#define`s) for tons of architectures, compilers, and systems to be more consistent and clear. These shadowed macros are wrapped in new macros, all following the consistent naming format of `C_<section>_<item>` with `<section>` either being [`ARCHITECTURE`](#Architectures), [`COMPILER`](#Compilers), [`SYSTEM`](#Systems), or [`STANDARD`](#Standards) and the `<item>` part being a specific architecture/compiler/system/standard: both written with all alphabetical characters in uppercase. Additionally, for the first three, architecture/compiler/system sections, omitting the item part, just using `C_<section>` gives you a human-readable string of the name of the most-applicable (meaning the most specific identifier which can be used to accurately describe that section for the current system/build environment) item for that section (more on this below).
 ## Architectures
 To find out if a specific architecture is in use 
 ```c
@@ -34,7 +34,7 @@ or simply
 ```
 either of the above will be true if the specified architecture is the primary architecture in use.
 Additionally, a human-readable and properly-cased string for whatever the current architecture is, is defined for `C_ARCHITECTURE`. 
-Note, `c_predefined.h` uses whatever the **most-specific applicable architecture name** is so for example, it will use `C_ARCHITECTURE_ARM64` over simply `C_ARCHITECTURE_ARM` on 64-bit ARM processors.
+Note, `c_predefined.h` uses whatever the **most-specific applicable architecture name** is so, for example, it will use `C_ARCHITECTURE_ARM64` over simply `C_ARCHITECTURE_ARM` on 64-bit ARM processors.
 Full example:
 ```c
 #include "c_predefined.h"
@@ -74,7 +74,7 @@ or simply
 ```
 either of the above will be true if the specified compiler is the primary compiler in use.
 Additionally, a human-readable and properly-cased string for whatever the current compiler is, is defined for `C_COMPILER`. 
-Note, `c_predefined.h` uses whatever the **most-specific applicable compiler name** is so for example, it will use `C_COMPILER_CLANG` over simply `C_COMPILER_LLVM` in [clang](https://clang.llvm.org/) even though Clang is built on top of [LLVM](https://www.llvm.org/) (with `C_COMPILER_LLVM` being used for other, unrecognised, LLVM-based compilers.)
+Note, `c_predefined.h` uses whatever the **most-specific applicable compiler name** is so, for example, it will use `C_COMPILER_CLANG` over simply `C_COMPILER_LLVM` in [clang](https://clang.llvm.org/) even though Clang is built on top of [LLVM](https://www.llvm.org/) (with `C_COMPILER_LLVM` being used for other, unrecognised, LLVM-based compilers.)
 Full example:
 ```c
 #include "c_predefined.h"
@@ -122,7 +122,7 @@ or simply
 ```
 either of the above will be true if the specified system is the primary system in use.
 Additionally, a human-readable and properly-cased string for whatever the current system is, is defined for `C_SYSTEM`. 
-Note, `c_predefined.h` uses whatever the **most-specific applicable system name** is so for example, `C_SYSTEM_GNU_LINUX` will be preferred over simply `C_SYSTEM_LINUX` OR `C_SYSTEM_UNIX` where appropriate.
+Note, `c_predefined.h` uses whatever the **most-specific applicable system name** is so, for example, `C_SYSTEM_GNU_LINUX` will be preferred over simply `C_SYSTEM_LINUX` OR `C_SYSTEM_UNIX` where appropriate.
 Full example:
 ```c
 #include "c_predefined.h"
@@ -165,7 +165,7 @@ The [non-obscure](#Options) systems `c_predefined.h` will recognise by default a
 
 Tons more are recognised by defining `C_PREDEFINED_OBSCURE_SYSTEMS 1` before including "c_predefined.h" (see [Options](#Options) for more info).
 ## Standards
-Additionally, `c_predefined.h` recognises several language-standards for both C and C++ compilers:
+Additionally, `c_predefined.h` recognises several language standards for both C and C++ compilers:
 
 - `C_STANDARD_C90`
 - `C_STANDARD_C94`
@@ -178,11 +178,11 @@ Additionally, `c_predefined.h` recognises several language-standards for both C 
 - `C_STANDARD_CLI`
 - `C_STANDARD_EMBEDDED`
 
-will all evaluate to `1` if the corresponding standard is being implemented. Unlike the architecture/compiler/system constants specified above, standards are cummulative so for example, it's possible for both `C_STANDARD_C94` and `C_STANDARD_C99` to evaluate to `1` at the same time.
+will all evaluate to `1` if the corresponding standard is being implemented. Unlike the architecture/compiler/system constants specified above, standards are cumulative so, for example, it's possible for both `C_STANDARD_C94` and `C_STANDARD_C99` to evaluate to `1` at the same time.
 ### Unix Standards
 `c_predefined.h` can also wrap Unix standards specified `<unistd.h>` if `C_PREDEFINED_UNIX_STANDARDS` is defined to equal `1` before including `"c_predefined.h"`; obviously this options should only be used on POSIX-compliant unix-based systems. I may implement an automatic check for if this should be enabled in future updates.
 ### Helpful Macros
-If `C_PREDEFINED_HELPFUL_MACROS` is defined to `1` before including `"c_predefined.h"`, `c_predefined.h` can also wrap some other, less-ubiquitos, helpful macros under the `C_STANDARD` moniker as follows:
+If `C_PREDEFINED_HELPFUL_MACROS` is defined to `1` before including `"c_predefined.h"`, `c_predefined.h` can also wrap some other, less-ubiquitous, helpful macros under the `C_STANDARD` moniker as follows:
 
 - `C_STANDARD_ELF`
 - `C_STANDARD_CHAR_UNSIGNED`
@@ -225,6 +225,6 @@ Changes are tracked in [CHANGES.md](./CHANGES.md).
 
 Any pull request to add additional predefined macros are welcome, just be sure to provide attribution to the official documentation for the architecture/compiler/system which recognises them. 
 # License
-MIT ©2019 Anadian
+MIT ©2017-2021 Anadian
 
 SEE LICENSE IN [LICENSE](./LICENSE)
