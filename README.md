@@ -131,7 +131,7 @@ Full example:
 int main(int argc, char *argv[]){
 	#if C_SYSTEM_CYGWIN
 	printf("This code was compiled for %s.", C_SYSTEM); /* Will print: "This code was compiled for Cygwin" on Cygwin. */
-	#elif C_SYSTEM_LLVMj
+	#elif C_SYSTEM_LLVM
 	printf("This code was compiled for %s.", C_SYSTEM); /* Will print: "This code was compiled for Windows CE" on Windows CE based systems. */
 	#endif
 }
